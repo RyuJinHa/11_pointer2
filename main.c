@@ -2,57 +2,52 @@
 #include <stdlib.h>
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
-	int sum(int a, int b)
+void print_image(int image[][5])
+{
+	int i,j;
+	int *ptr=&image[0][0];
+	for(i=0;i<5;i++)
 	{
-		return a+b;
+		for(j=0;j<5;j++)
+		{
+			printf(" %d ",*ptr);
+			ptr=ptr+1;
+				
+		}	printf("\n");
 	}
-	int sub(int a, int b)
+	printf("\n");
+}
+
+
+void brighten_image(int image[][5])
+{
+	int i,j;
+	int *ptr=&image[0][0];
+	for(i=0;i<5;i++)
 	{
-		return a-b;
+		for(j=0;j<5;j++)
+		{
+			*ptr=*ptr+10;
+			ptr=ptr+1;
+		}
+		
 	}
-	int mul(int a, int b)
-	{
-		return a*b;
-	}
-	
-	int divide(int a, int b)
-	{
-		return a/b;
-	}
+}
 
 int main(int argc, char *argv[]) {
 	
-	int a,b;
-	char op;
-	int(*calcfunc)(int,int);
-	int output;
+	int image[5][5]={
+ 		{10 ,20 ,30 ,40 ,50 },
+		{10 ,20 ,30 ,40 ,50 },
+		{10 ,20 ,30 ,40 ,50},
+		{10 ,20 ,30 ,40 ,50},
+		{10 ,20 ,30 ,40 ,50},
+	};
+	
+	print_image(image);
+	brighten_image(image);
+	print_image(image);
 
-
-	printf("숫자와 연산자를 입력하세요\n");
-	scanf(" %d %c %d",&a,&op, &b);
-	
-	
-	
-	switch(op)
-	{
-		case'+':
-			calcfunc=sum;
-			break;
-		
-		case'-':
-			calcfunc=sub;
-			break;
-		case'*':
-			calcfunc=mul;
-			break;
-		case'/':
-			calcfunc=divide;
-			break;
-		
-	}
-
-printf("result: %i",calcfunc(a,b));
-	
 	
 	return 0;
 }
